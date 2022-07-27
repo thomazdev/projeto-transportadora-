@@ -1,0 +1,79 @@
+<title>Avaliações de motoristas - Painel de Gestão Suzam</title> 
+<%- include('header.ejs')%>  
+
+<!--Main-->
+<main>
+    <div class="center">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/dashbord">Painel</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Avaliações de Motoristas</li>
+            </ol>
+            <% if(assessments == '') {%>
+
+            <% }else{ %>
+            <div class="d-grid gap-2 mb-3">
+                <a href="/dashbord/assessments/new" class="btn btn-primary btn-lg float-start mb-2 btnA">Nova avaliação</a>
+            </div>
+            <% } %>
+            
+        </nav><!--breadcrumb end-->
+
+        <div class="clear"></div>
+
+        <% if(deleteA){%>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%=deleteA%>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+
+        <div class="row">
+
+            <% if(assessments == ''){%>
+                
+                <div class="box text-center p-5">
+
+                    <h4 class="display-5">Ainda não tem avalições</h4>
+                    <p>Para criar uma nova ficha de avaliação basta clicar no botão abaixo..</p>
+                    <div class="d-grid gap-2 mb-3">
+                        <a href="/dashbord/assessments/new" class="btn btn-primary btn-lg float-start mb-2">Nova avaliação</a>
+                    </div>
+                </div>
+
+            <% }else{%>
+
+                <% assessments.forEach(ass =>{%>
+                    <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                        <div class="list-group">
+                            <a href="/dashbord/assessments/view/<%= ass.id %>" class="list-group-item list-group-item-action" aria-current="true">
+                              <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1"><%= ass.name %> / <strong style="color: #000633;"><%= ass.board_vehicle %></strong></h5>
+                                
+                              </div>
+                              <p class="mb-1">
+                                O motorista está de: 
+                                <strong class="badge bg-secondary"><%= ass.driver %></strong> / 
+                                 Data de inspeção <%= ass.date_inspection %>
+                                </p>
+                                <% if (ass.status == 1) { %>
+                                    <small class="badge bg-success">Avaliação concluida</small>
+                                <% }else if(ass.status == 0){ %>
+                                    <small class="badge bg-danger">Avaliação pendente</small>
+                                <% } %>
+                            </a>
+                        </div><!--list group-->
+                    </div><!--col-->
+                <% })%>
+
+            <% } %>
+ 
+        </div><!--row-->
+        
+
+    </div><!--center end-->
+</main><!--main end-->
+        
+<%- include('footer.ejs')%>        
+            

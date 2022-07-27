@@ -1,0 +1,427 @@
+
+@font-face {
+    font-family: "Arista2.0 Alternate light";
+    src: url("../fonts/Arista2.0 Alternate light.ttf");
+}
+
+@font-face {
+    font-family: "Arista2.0 light";
+    src: url("../fonts/Arista2.0 light.ttf");
+}
+
+@font-face {
+    font-family: "Arista2.0";
+    src: url("../fonts/Arista2.0.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.center{
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: 0 2%;
+}
+
+.clear{clear: both;}
+
+body{
+    background-color: #b4bec9;
+}
+
+/*BOX LOGIN*/
+
+.box_login{
+    max-width: 500px;
+    background-color: white;
+    margin: 10% auto;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.login_header{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.login_header h1{
+    font-family: 'Arista2.0';
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #000633;
+}
+
+.login_header h1 strong{
+    font-family: 'Arista2.0';
+    text-transform: uppercase;
+    color: #3627d9;
+}
+
+.login_header p{
+    font-size: 18px;
+    color: black;
+    letter-spacing: 2px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.form_login{
+    width: 100%;
+    padding: 15px;
+}
+
+.form_login input{
+    width: 100%;
+    display: block;
+    padding: 20px;
+    border: 1px solid #b4bec9;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: black;
+    font-family: 'Arista2.0 light';
+    border-radius: 5px;
+}
+
+.form_login input[type=submit]{
+    background-color: #3627d9;
+    color: white;
+    border: 0;
+    font-family: 'Arista2.0';
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 20px;
+}
+
+.form_login input[type=submit]:hover{
+    background-color: #000633;
+    transition: 1s ease;
+    cursor: pointer;
+}
+
+.list_info{
+    list-style: none;
+}
+
+.list_info li{
+    margin-left: -22px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.list_info li:last-child{
+    float: right;
+}
+
+.list_info li a{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: black;
+    font-family: 'Arista2.0 light';
+    letter-spacing: 2px;
+}
+
+.list_info li a:hover{
+    border-bottom: 1px solid #000633;
+    transition: 1s ease;
+}
+
+/*DASHBORD*/
+
+header{
+    padding: 10px;
+    width: 100%;
+}
+
+header .info_dash{
+    float: left;
+    margin-top: 15px;
+}
+
+header .info_dash h1{
+    font-size: 36px;
+    font-family: 'Arista2.0';
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+header .info_dash h1 strong{
+    font-family: 'Arista2.0';
+    color: #3627d9;
+}
+
+header .info_dash small{
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+header .info_dash a{
+    text-decoration: none;
+    padding: 8px;
+    background-color: #3627d9;
+    color: white;
+    margin-left: 15px;
+}
+
+header .info_dash a:hover{
+    background-color: #000633;
+    transition: 1s ease;
+}
+
+header .icon_dash{
+    float: right;
+    margin-top: 5px;
+}
+
+header .icon_dash ul{
+    list-style-type: none;
+}
+
+header .icon_dash ul li{
+    display: inline-block;
+    margin: 10px;
+}
+
+header .icon_dash ul li img{
+    width: 80px;
+    height: 80px;
+}
+
+/*MAIN*/
+
+main{
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+main .nav_box{
+    width: 100%;
+    display: block;
+}
+
+main .navbar_item{
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center; 
+}
+
+main .navbar_item img{
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+main .navbar_item h4{
+    font-size: 20px;
+    color: #000633;
+    font-weight: 400;
+    display: block;
+}
+
+main .navbar_item a{
+    text-decoration: none;
+    font-size: 16px;
+}
+
+main .navbar_item:hover{
+    border: 1px solid #3627d9;
+    cursor: pointer;
+    transition: 1s ease;
+}
+
+/*FOOTER*/
+
+footer{
+    width: 100%;
+    text-align: center;
+    background-color: #000633;
+    padding: 25px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+footer h4{
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Arista2.0";
+}
+
+footer h4 a{
+    text-decoration: none;
+    color: #3627d9;
+    font-family: "Arista2.0";
+    text-transform: uppercase;
+}
+
+/*CLASSES BOOT*/
+
+.breadcrumb{
+    background-color: #000633;
+}
+
+.breadcrumb li{
+    padding: 15px;
+}
+
+.breadcrumb a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.breadcrumb li.active{
+    font-size: 18px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+.breadcrumb li a:hover{
+    color: #4454d1;
+    transition: 1s ease;
+}
+
+.card-header{
+    background-color: #3627d9;
+    color: white;
+    padding: 0;
+}
+
+.card-header h1{
+    font-family: "Arista2.0 light";
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    padding: 18px;
+}
+
+.form-control, .form-select{
+    background-color: white;
+    border: 1px solid #b4bec9;
+}
+
+.list-group-item:hover{
+    background-color: white;
+    border: 1px solid #3627d9;
+    transition: 1s ease;
+    color: #000633;
+}
+
+.listA{
+    border-radius: 0;
+    border-bottom: 1px solid #b4bec9;
+}
+
+.listA:hover{
+    background-color: #b4bec9;
+    border: 0;
+    cursor: pointer;
+}
+
+.btnA{
+    background-color: #3627d9;
+    border: 0;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-family: "Arista2.0 light";
+    letter-spacing: 3px;
+}
+
+.btnA:hover{
+    background-color: transparent;
+    border: 1px solid #3627d9;
+    color: #000633;
+    transition: 0.5s ease-in;
+}
+
+.btnI{
+    border: 1px solid #3627d9;
+    color: #000633;
+}
+
+.btnI:hover{
+    background-color: #3627d9;
+    border: 0;
+}
+
+
+/*AVALIAÇÕES*/
+
+.img_view_ass{
+    width: 100%;
+    height: 150px;
+    background-color: #b4bec9;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.img_view_ass img{
+    margin-top: 22px;
+    max-width: 100%;
+    height: 100px;
+}
+
+.info_view h1{
+    font-size: 42px;
+    font-family: "Arista2.0 light";
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #000633;
+}
+
+.info_view h1 strong{
+    font-size: 36px;
+    text-transform: uppercase;
+    background-color: #3627d9;
+    padding: 5px;
+    color: white;
+    border-radius: 5px;
+}
+
+.info_view ul{list-style: none;}
+
+.info_view ul li{
+    display: block;
+    text-align: left;
+    margin-left: -30px;
+    margin-bottom: 3px;
+    font-size: 18px;
+}
+
+.info_view ul li strong{
+    color: #3627d9;
+}
+
+.btnAV{
+    border: 0;
+}
+
+@media screen and (max-width: 576px){
+
+
+}
+
+@media screen and (min-width: 768px){
+
+
+}

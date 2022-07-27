@@ -1,0 +1,528 @@
+<title><%-assessment.name%> - Painel de Gestão Suzam</title>
+<%- include('header.ejs')%>  
+              
+    <div class="center">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/dashbord">Painel</a></li>
+              <li class="breadcrumb-item"><a href="/dashbord/assessments">Avaliações de Motoristas</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Avaliação de: <%-assessment.name%></li>
+            </ol>
+          </nav>
+
+         <!--Header-->
+
+         <% if(cadSuccess) {%>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <%=cadSuccess%>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% } %>
+
+        <% if(assessment.status == 0 || assessment.anexos_doc_crvl == 'sem-anexo' || assessment.anexos_doc_nfe == 'sem-anexo') {%>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Olá Usuário ainda</strong> tem dcumentação pendentes para anexar ficha de avaliação 
+          </div>
+        <% } %>
+
+         <div class="card mb-2">
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12 col-md-2 col-lg-2">
+                        <div class="img_view_ass mb-2">
+                            <img src="/images/user-men.png" title="Motorista" class="center"/>
+                        </div> 
+                        <div class="d-grid gap-2">
+                            <% if (assessment.status == 1) { %>
+                                <a href="" class="btn btn-success btn-block btnAV">Avalição completa</a>
+                            <% }else if(assessment.status == 0){ %>
+                                <a href="" class="btn btn-danger btn-block btnAV">Avalição pendente</a>
+                            <% } %>
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-12 col-md-10 col-lg-10 info_view">
+                        <h1 class="display-4 mb-2"><%- assessment.name %> </h1>
+                        <ul>
+                            <li>Data de inspeção: <strong><%- assessment.date_inspection %></strong></li>
+                            <li>Placa: <strong><%- assessment.board_vehicle %></strong></li>
+                            <li>Veiculo: <strong><%- assessment.type_vehicle %> / <%- assessment.brand_vehicle %> </strong></li>
+                            <li>O motorista está: <small class="badge bg-success">Entrando</small></li>
+                        </ul>
+                    </div>
+                 </div><!--row-->
+            </div><!--card-body-->
+
+         </div><!--card-->
+
+         <div class="card mb-3">
+           
+            <div class="card-header">
+                <h1>Informações do motorista</h1>
+            </div><!--card header-->
+
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">Nome</div>
+                    <%-assessment.name%>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">CPF</div>
+                    <%-assessment.cpf %>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">Placa</div>
+                    <%-assessment.board_vehicle %>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">Tipo</div>
+                    <%-assessment.type_vehicle %>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">Marca</div>
+                    <%-assessment.brand_vehicle %>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">Ano</div>
+                    <%-assessment.year_vehicle %>
+                    </div>
+                </li>
+            </ol>
+ 
+         </div><!--card informações motoristas-->
+
+         <div class="card mb-3">
+           
+            <div class="card-header">
+                <h1>Documentações</h1>
+            </div><!--card header-->
+
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">O motorista esta com CRLV em dia?</div>
+                    <%-assessment.crlv_vehicle%>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">O motorista esta com CNH em dia ?</div>
+                    <%-assessment.cnh %>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">O motorista está com nota fiscal da carga ?</div>
+                    <%-assessment.nfe_charge %>
+                    </div>
+                </li>
+            </ol>
+ 
+         </div><!--card documentações-->
+
+         <div class="card mb-3">
+           
+            <div class="card-header">
+                <h1>Informações da inspeção</h1>
+            </div><!--card header-->
+
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">Data da inspeção</div>
+                    <%-assessment.date_inspection%>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">Quilometragem do Veiculo</div>
+                    <%-assessment.mileage %> km
+                    </div>
+                </li>
+                
+            </ol>
+ 
+ 
+         </div><!--card informações de inspeção-->
+
+         <div class="card mb-3">
+           
+            <div class="card-header">
+                <h1>Estado do caminhão</h1>
+            </div><!--card header-->
+
+            <ul class="list-group list-group-numbered">
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Rastreador</div>
+                    <%-assessment.tracker%>
+                  </div>
+                  <span class="badge bg-success rounded-pill">
+                    <i class="fa-solid fa-check"></i>
+                  </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Cinto de segurança</div>
+                      <%-assessment.seat_belt%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Extintor</div>
+                      <%-assessment.extinguisher%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Cortina do Baú</div>
+                      <%-assessment.trunk_curtain%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Para-brisa</div>
+                      <%-assessment.windshield%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Macaco</div>
+                      <%-assessment.monkey%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Triângulo</div>
+                      <%-assessment.triangle%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Água do radiador</div>
+                      <%-assessment.radiator_water%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Direção</div>
+                      <%-assessment.direction%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Buzina</div>
+                      <%-assessment.horn%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Setas</div>
+                      <%-assessment.arrows%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Alerta 1</div>
+                      <%-assessment.alert_one%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Alerta 2:</div>
+                      <%-assessment.alert_two%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Tacógrafo</div>
+                      <%-assessment.tachograph%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Pneus</div>
+                      <%-assessment.tires%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Freios</div>
+                      <%-assessment.brakes%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Limpador de Pará-Brisa</div>
+                      <%-assessment.windshield_wiper%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Retrovisor</div>
+                      <%-assessment.rear_view%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Farol</div>
+                      <%-assessment.lighthouse%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Nivel de Ruidos</div>
+                      <%-assessment.noise_level%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Luz de Ré</div>
+                      <%-assessment.taillight%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Oléo de Freio</div>
+                      <%-assessment.brake_oil%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Lateral do motorista</div>
+                      <%-assessment.driver_side%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Carroceria</div>
+                      <%-assessment.bodywork%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Luz de Freio 2</div>
+                      <%-assessment.brake_light_two%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Oléo de motor</div>
+                      <%-assessment.motor_oil%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+
+                <li class="list-group-item d-flex justify-content-between align-items-start listA">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Regulagem de temperatura</div>
+                      <%-assessment.temperature_adjustment%>
+                    </div>
+                    <span class="badge bg-success rounded-pill">
+                      <i class="fa-solid fa-check"></i>
+                    </span>
+                </li><!--li-->
+            </ul>
+ 
+         </div><!--card estado do caminhão-->
+
+         <div class="card mb-3">
+
+          <div class="card-header">
+            <h1>Anexos de documentação</h1>
+          </div><!--card header-->
+
+          <ul class="list-group list-group-numbered">
+            <li class="list-group-item d-flex justify-content-between align-items-start listA">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Nota fiscal da carga</div>
+                aqui vai arquivo da nota
+              </div>
+              <% if(assessment.anexos_doc_nfe == 'sem-anexo'){ %>
+              <span class="badge bg-danger rounded-pill">
+                <i class="fa-solid fa-triangle-exclamation" style="margin-right: 2px;"></i>
+                Arquivo indisponivel
+              </span>
+              <% }else if(assessment.anexos_doc_nfe){%>
+                <span class="badge bg-success rounded-pill">
+                  <i class="fa-solid fa-check"></i>
+                  Arquivo disponivel
+                </span>
+              <% } %>
+              
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between align-items-start listA">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">CRVL do motorista</div>
+                aqui vai arquivo
+              </div>
+              <% if(assessment.anexos_doc_crvl == 'sem-anexo'){ %>
+                <span class="badge bg-danger rounded-pill">
+                  <i class="fa-solid fa-triangle-exclamation" style="margin-right: 2px;"></i>
+                  Arquivo indisponivel
+                </span>
+              <% }else if(assessment.anexos_doc_crvl){%>
+                  <span class="badge bg-success rounded-pill">
+                    <i class="fa-solid fa-check"></i>
+                    Arquivo disponivel
+                  </span>
+              <% } %>
+            </li>
+
+          </ul>
+
+        </div><!--card de anexos-->
+
+         <div class="d-flex justify-content-center p-2 mb-3">
+            <small>Ficha atualiza as: <%-resultDate %></small>
+         </div>
+
+         <div class="row mb-5">
+
+              <div class="col-sm-12 col-md-3 col-lg-3 text-center mb-2">
+                <div class="d-grid gap-2">
+                  <a href="" class="btn btn-success btn-lg"><i class="fa-solid fa-pen-to-square" style="margin-right:5px;"></i>Editar avaliação</a>
+                </div>
+              </div>
+
+              <div class="col-sm-12 col-md-3 col-lg-3 text-center mb-2">
+                <div class="d-grid gap-2">
+                  <a href="" class="btn btn-info btn-lg "><i class="fa-solid fa-file-arrow-up" style="margin-right:5px;"></i>Anexar documentação</a>
+                </div>
+              </div>
+
+              <div class="col-sm-12 col-md-3 col-lg-3 text-center mb-2">
+                <div class="d-grid gap-2">
+                  <a href="" class="btn btn-lg btn-secondary"><i class="fa-solid fa-print" style="margin-right:5px;"></i>Imprimir avaliação</a>
+                </div>
+              </div>
+
+              <div class="col-sm-12 col-md-3 col-lg-3 text-center">
+                <div class="d-grid gap-2">
+                  <a href="/dashbord/assessments/delete/<%-assessment.id%>" class="btn btn-danger btn-lg ">
+                    <i class="fa-solid fa-trash-can" style="margin-right:5px;"></i>Excluir avaliação
+                  </a>
+                </div>
+              </div>
+
+         </div><!--btn-->
+
+
+    </div><!--center-->
+    
+<%- include('footer.ejs')%>        
+            

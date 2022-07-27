@@ -1,0 +1,390 @@
+<title>Nova avaliação - Painel de Gestão Suzam</title>
+<%- include('header.ejs')%>  
+              
+    <div class="center">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/dashbord">Painel</a></li>
+              <li class="breadcrumb-item"><a href="/dashbord/assessments">Avaliações de Motoristas</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Nova avaliação</li>
+            </ol>
+          </nav>
+
+
+        <% if(generalError) {%>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <%=generalError%>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+
+          <form method="post" action="/dashbord/assessments/save">
+
+            <div class="card mb-3">
+                
+                <div class="card-header">
+                    <h1>Informações do motorista</h1>
+                </div><!--card header-->
+
+                <div class="card-body p-3">
+                   
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <label for="">Nome do responsavel:</label>
+                            <input class="form-control form-control-lg mb-3" type="text" name="name">
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">CPF:</label>
+                            <input class="form-control form-control-lg mb-3 cpf" id="cpf" type="text" name="cpf">
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">O motorista esta de entrada ou saida ?:</label>
+                            <select class="form-select form-select-lg mb-3" name="driver">
+                                <option value="entrada">Entrada</option>
+                                <option value="saida">saida</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Tipo:</label>
+                            <select class="form-select form-select-lg mb-3" name="type_vehicle">
+                                <option value="caminhão">Caminhão</option>
+                                <option value="carro">Carro</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Marca:</label>
+                            <select class="form-select form-select-lg mb-3" name="brand_vehicle">
+                                <option value="volks">Volks</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Placa:</label>
+                            <input class="form-control form-control-lg mb-3 placa" type="text" name="board_vehicle">
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Ano:</label>
+                            <input class="form-control form-control-lg mb-3 year" type="text" name="year_vehicle">
+                        </div><!--col-->
+
+                    </div><!---->
+                    
+                </div><!--card-body-->
+
+            </div><!--info motoristas-->
+
+            <div class="card mb-3">
+                
+                <div class="card-header">
+                    <h1>Documentação</h1>
+                </div><!--card header-->
+
+                <div class="card-body p-3">
+                   
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <label for="">O motorista esta com CRLV em dia?:</label>
+                            <select class="form-select form-select-lg mb-3" name="crlv_vehicle">
+                                <option value="tudo-certo">Tudo certo</option>
+                                <option value="inexistente">Inexistente</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <label for="">O motorista esta com CNH em dia ?:</label>
+                            <select class="form-select form-select-lg mb-3" name="cnh">
+                                <option value="tudo-certo">Tudo certo</option>
+                                <option value="inexistente">Inixistente</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <label for="">O motorista está com nota fiscal da carga ?:</label>
+                            <select class="form-select form-select-lg mb-3" name="nfe_charge">
+                                <option value="sim">Sim</option>
+                                <option value="nao">Não</option>
+                            </select>
+                        </div><!--col-->
+
+                    </div><!---->
+                    
+                </div><!--card-body-->
+
+            </div><!--documentação-->
+
+            <div class="card mb-3">
+                
+                <div class="card-header">
+                    <h1>Informações da inspeção</h1>
+                </div><!--card header-->
+
+                <div class="card-body p-3">
+                   
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Data da inspeção:</label>
+                            <input class="form-control form-control-lg mb-3 date" type="text" name="date_inspection">
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Quilometragem:</label>
+                            <input class="form-control form-control-lg mb-3 km" type="text" name="mileage">
+                        </div><!--col-->
+
+                    </div><!---->
+                    
+                </div><!--card-body-->
+
+            </div><!--info inspeção-->
+
+            <div class="card mb-3">
+                
+                <div class="card-header">
+                    <h1>Estado do caminhão</h1>
+                </div><!--card header-->
+
+                <div class="card-body p-3">
+                   
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Rastreador:</label>
+                            <select class="form-select form-select-lg mb-3" name="tracker">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Cinto de segurança:</label>
+                            <select class="form-select form-select-lg mb-3" name="seat_belt">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Extintor:</label>
+                            <select class="form-select form-select-lg mb-3" name="extinguisher">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Cortina do Baú:</label>
+                            <select class="form-select form-select-lg mb-3" name="trunk_curtain">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Para-brisa:</label>
+                            <select class="form-select form-select-lg mb-3" name="windshield">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Macaco:</label>
+                            <select class="form-select form-select-lg mb-3" name="monkey">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Triângulo:</label>
+                            <select class="form-select form-select-lg mb-3" name="triangle">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Água do radiador:</label>
+                            <select class="form-select form-select-lg mb-3" name="radiator_water">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Direção:</label>
+                            <select class="form-select form-select-lg mb-3" name="direction">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Buzina:</label>
+                            <select class="form-select form-select-lg mb-3" name="horn">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Setas:</label>
+                            <select class="form-select form-select-lg mb-3" name="arrows">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Alerta:</label>
+                            <select class="form-select form-select-lg mb-3" name="alert_one">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Tacógrafo:</label>
+                            <select class="form-select form-select-lg mb-3" name="tachograph">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Pneus:</label>
+                            <select class="form-select form-select-lg mb-3" name="tires">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Freios:</label>
+                            <select class="form-select form-select-lg mb-3" name="brakes">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Limpador de Pará-Brisa:</label>
+                            <select class="form-select form-select-lg mb-3" name="windshield_wiper">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Retrovisor:</label>
+                            <select class="form-select form-select-lg mb-3" name="rear_view">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Farol:</label>
+                            <select class="form-select form-select-lg mb-3" name="lighthouse">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Nivel de ruido:</label>
+                            <select class="form-select form-select-lg mb-3" name="noise_level">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Alerta 2:</label>
+                            <select class="form-select form-select-lg mb-3" name="alert_two">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Luz de Ré:</label>
+                            <select class="form-select form-select-lg mb-3" name="taillight">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Oléo de Freio:</label>
+                            <select class="form-select form-select-lg mb-3" name="brake_oil">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Lateral do motorista:</label>
+                            <select class="form-select form-select-lg mb-3" name="driver_side">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Carroceria:</label>
+                            <select class="form-select form-select-lg mb-3" name="bodywork">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Luz de Freio 2:</label>
+                            <select class="form-select form-select-lg mb-3" name="brake_light_two">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label for="">Oléo de motor:</label>
+                            <select class="form-select form-select-lg mb-3" name="motor_oil">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <label for="">Regulagem de temperatura:</label>
+                            <select class="form-select form-select-lg mb-3" name="temperature_adjustment">
+                                <option value="conforme">Conforme</option>
+                                <option value="nao conforme">Não Conforme</option>
+                            </select>
+                        </div><!--col-->
+
+                    </div><!--row end-->
+                    
+                </div><!--card-body-->
+
+            </div><!--estado do caminhão-->
+
+            <div class="d-grid gap-2 mb-3">
+                <input class="btn btn-success btn-lg btn-block" type="submit" value="Salvar avaliação">
+            </div>
+
+          </form><!--form end-->
+
+    </div>
+    
+<%- include('footer.ejs')%>        
+            
